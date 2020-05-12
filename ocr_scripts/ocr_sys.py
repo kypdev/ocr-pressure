@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import argparse
-# import ocr_scripts.pressure as pressure
+import json
 
 
 DIGITS_LOOKUP = {
@@ -405,10 +405,11 @@ def dia_value():
 def main():
     sys = sys_value()
     dia = dia_value()
-    print('sys: ' + sys + ' dia: ' + dia)
+    # print('sys: ' + sys + ' dia: ' + dia)
+    data = {"sys": sys, "dia": dia}
+    with open('../ocr/data.json', 'w') as json_file:
+        json.dump(data, json_file)
 
-    # p = pressure.Pressure(sys, dia)
-    # print(p.sys)
 
 
 if __name__ == '__main__':
